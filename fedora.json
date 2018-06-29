@@ -32,6 +32,8 @@
         "<tab> linux text biosdevname=0 ks=http://{{ .HTTPIP }}:{{ .HTTPPort}}/{{ user `kickstart` }}<enter><enter>"
       ],
       "disk_size": "{{ user `disk_size` }}",
+        "guest_additions_url": "https://www.virtualbox.org/download/testcase/VBoxGuestAdditions_5.2.13-123081.iso",
+        "guest_additions_sha256" : "b79ca0bba03663844fefdd413d531d55e3a3101cc7fd43682bcb7a81209462a3",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "{{ user `virtualbox_guest_os_type` }}",
       "headless": "{{ user `headless` }}",
