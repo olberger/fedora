@@ -6,35 +6,31 @@ This repository contains Packer templates for creating Fedora Vagrant boxes.
 
 ## Current Boxes
 
-64-bit boxes:
-
-* [Fedora 25 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/fedora25)
-* [Fedora 24 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/fedora24)
-
+We no longer provide pre-built binaries for these templates.
 
 ## Building the Vagrant boxes with Packer
 
-To build all the boxes, you will need [VirtualBox](https://www.virtualbox.org/wiki/Downloads), 
+To build all the boxes, you will need [VirtualBox](https://www.virtualbox.org/wiki/Downloads),
 [VMware Fusion](https://www.vmware.com/products/fusion)/[VMware Workstation](https://www.vmware.com/products/workstation) and
 [Parallels](http://www.parallels.com/products/desktop/whats-new/) installed.
 
 Parallels requires that the
 [Parallels Virtualization SDK for Mac](http://www.parallels.com/downloads/desktop)
-be installed as an additional preqrequisite.
+be installed as an additional prerequisite.
 
 We make use of JSON files containing user variables to build specific versions of Ubuntu.
 You tell `packer` to use a specific user variable file via the `-var-file=` command line
 option.  This will override the default options on the core `fedora.json` packer template,
 which builds Fedora 25 by default.
 
-For example, to build Fedora 25, use the following:
+For example, to build Fedora 28 Server, use the following:
 
-    $ packer build -var-file=fedora25.json fedora.json
-    
+    $ packer build -var-file=fedora28-server.json fedora.json
+
 If you want to make boxes for a specific desktop virtualization platform, use the `-only`
-parameter.  For example, to build Fedora 25 for VirtualBox:
+parameter.  For example, to build Fedora 28 Server for VirtualBox:
 
-    $ packer build -only=virtualbox-iso -var-file=fedora25.json fedora.json
+    $ packer build -only=virtualbox-iso -var-file=fedora28-server.json fedora.json
 
 The boxcutter templates currently support the following desktop virtualization strings:
 
@@ -45,13 +41,13 @@ The boxcutter templates currently support the following desktop virtualization s
 ## Building the Vagrant boxes with the box script
 
 We've also provided a wrapper script `bin/box` for ease of use, so alternatively, you can use
-the following to build Fedora 25 for all providers:
+the following to build Fedora 28 for all providers:
 
-    $ bin/box build fedora25
+    $ bin/box build fedora28
 
-Or if you just want to build Fedora 25 for VirtualBox:
+Or if you just want to build Fedora 28 for VirtualBox:
 
-    $ bin/box build fedora25 virtualbox
+    $ bin/box build fedora28 virtualbox
 
 ## Building the Vagrant boxes with the Makefile
 
@@ -80,7 +76,7 @@ process, should you be using a proxy:
 * ftp_proxy
 * rsync_proxy
 * no_proxy
- 
+
 ### Tests
 
 The tests are written in [Serverspec](http://serverspec.org) and require the
@@ -92,11 +88,11 @@ The `Makefile` has individual targets for each box type with the prefix
 `test-*` should you wish to run tests individually for each box.
 
     make test-virtualbox/fedora22
-    
+
 Similarly there are targets with the prefix `ssh-*` for registering a
 newly-built box with vagrant and for logging in using just one command to
 do exploratory testing.  For example, to do exploratory testing
-on the VirtualBox training environmnet, run the following command:
+on the VirtualBox training environment, run the following command:
 
     make ssh-virtualbox/fedora22
 
@@ -152,11 +148,11 @@ download Internet URLs.
 
 ### Acknowledgments
 
-[Parallels](http://www.parallels.com/) provides a Business Edition license of
+[Parallels](http://www.parallels.com/) provided a Business Edition license of
 their software to run on the basebox build farm.
 
 <img src="http://www.parallels.com/fileadmin/images/corporate/brand-assets/images/logo-knockout-on-red.jpg" width="80">
 
-[SmartyStreets](http://www.smartystreets.com) is providing basebox hosting for the box-cutter project.
+[SmartyStreets](http://www.smartystreets.com) provided basebox hosting for the box-cutter project since 2015 - thank you for your support!
 
 <img src="https://d79i1fxsrar4t.cloudfront.net/images/brand/smartystreets.65887aa3.png" width="320">
