@@ -1,5 +1,8 @@
 #!/bin/bash -eux
 
+echo "==> Remove old kernels and keep only the latest one"
+dnf remove -y $(dnf repoquery --installonly --latest-limit=-1 -q)
+
 echo "==> Clear out machine id"
 rm -f /etc/machine-id
 touch /etc/machine-id
