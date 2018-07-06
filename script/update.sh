@@ -21,7 +21,7 @@ if [[ $UPDATE  =~ true || $UPDATE =~ 1 || $UPDATE =~ yes ]]; then
             do
                 wget -nv https://kojipkgs.fedoraproject.org//packages/kernel/4.17.4/200.fc28/x86_64/$p
             done
-            yum install -y $packages
+            dnf install -y $packages
             cd ..
             rm -fr kernel_update
         fi
